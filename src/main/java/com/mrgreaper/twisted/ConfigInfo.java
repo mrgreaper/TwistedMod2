@@ -39,6 +39,8 @@ public class ConfigInfo {
     public static final String MOSSYCRAFT_KEY = "Allow craftable mossy cobblestone? ";
     public static boolean GRASSCRAFT;
     public static final String GRASSCRAFT_KEY = "Allow craftable grass? ";
+    public static boolean ELECBUNNYCRYS;
+    public static final String ELECBUNNYCRYS_KEY = "Enable electric bunny crys ?";
 
 
     //not used yet (in exile untill the functions that use them are ready)
@@ -54,8 +56,6 @@ public class ConfigInfo {
     public static boolean APPENG;
     public static final String APPENG_KEY = "Applied energetics helper enabled ?";
     public static boolean appEngLoaded;
-    public static boolean ELECBUNNYCRYS;
-    public static final String ELECBUNNYCRYS_KEY = "Enable electric bunny crys ?";
     public static int MAXENSLAVEDBUNNYRANGE;
     public static final String MAXENSLAVEDBUNNYRANGE_KEY = "Max range for enslaved bunny speach : ";
     public static final int MAXENSLAVEDBUNNYRANGE_DEFAULT = 50;

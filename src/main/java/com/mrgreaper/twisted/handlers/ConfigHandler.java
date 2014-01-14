@@ -18,11 +18,10 @@
 
 package com.mrgreaper.twisted.handlers;
 
-import java.io.File;
-
 import com.mrgreaper.twisted.ConfigInfo;
-
 import net.minecraftforge.common.config.Configuration;
+
+import java.io.File;
 
 public class ConfigHandler {
 
@@ -41,6 +40,7 @@ public class ConfigHandler {
         ConfigInfo.SPONGECRAFT = config.get("Vanila Tweaks", ConfigInfo.SPONGECRAFT_KEY, true).getBoolean(true);
         ConfigInfo.MOSSYCRAFT = config.get("Vanila Tweaks", ConfigInfo.MOSSYCRAFT_KEY, true).getBoolean(true);
         ConfigInfo.GRASSCRAFT = config.get("Vanila Tweaks", ConfigInfo.GRASSCRAFT_KEY, true).getBoolean(true);
+        ConfigInfo.ELECBUNNYCRYS = config.get("Bunny Toggles", ConfigInfo.ELECBUNNYCRYS_KEY, true).getBoolean(true);
 
         config.save();
 

@@ -18,21 +18,18 @@
 
 package com.mrgreaper.twisted.handlers;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.item.ItemStack;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.ChatComponentText;
-import net.minecraftforge.event.ServerChatEvent;
+import com.mrgreaper.twisted.ConfigInfo;
+import com.mrgreaper.twisted.items.Items;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.PlayerEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.ItemPickupEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.ItemSmeltedEvent;
-
-import com.mrgreaper.twisted.TwistedMod;
-import com.mrgreaper.twisted.entities.TwsistedPlayer;
+import cpw.mods.fml.common.gameevent.TickEvent;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.event.ServerChatEvent;
 
 
 public class EventHookHandler {
+    private boolean sound = false;
 
     public static void init() {
 
@@ -67,6 +64,47 @@ public class EventHookHandler {
         if (chatMessage.startsWith("test") && chatMessage.endsWith("sound")) {
             SoundHandler.onEntityPlay("bunnyRelease", event.player.worldObj, event.player, 1, 1);
         }
+    }
+
+    @SubscribeEvent
+    public void TwistedTickEvent(TickEvent.PlayerTickEvent event) {
+        if (event.player.getCurrentEquippedItem() != null) {//ok so lets make sure the player has something in thier little gruby handsies
+            ItemStack itemstack = event.player.getCurrentEquippedItem(); //lets make itemstack = it
+            System.out.println(itemstack);
+            if (itemstack.getItem() == Items.ItemElectricBunny && ConfigInfo.ELECBUNNYCRYS && !sound) {
+                int random = DiceHandler.diceRoll(5, 1);
+                switch (random) {
+                    case 1:
+                        SoundHandler.onEntityPlay("bunnyBegA", event.player.worldObj, event.player, 1, 1);
+                        System.out.println("sound is now" + sound);
+                        break;
+                    case 2:
+                        SoundHandler.onEntityPlay("bunnyBegB", event.player.worldObj, event.player, 1, 1);
+                        System.out.println("sound is now" + sound);
+                        break;
+                    case 3:
+                        SoundHandler.onEntityPlay("bunnyBegC", event.player.worldObj, event.player, 1, 1);
+                        System.out.println("sound is now" + sound);
+                        break;
+                    case 4:
+                        SoundHandler.onEntityPlay("bunnyBegD", event.player.worldObj, event.player, 1, 1);
+                        System.out.println("sound is now" + sound);
+                        break;
+                    case 5:
+                        SoundHandler.onEntityPlay("bunnyBegE", event.player.worldObj, event.player, 1, 1);
+                        System.out.println("sound is now" + sound);
+                        break;
+                }
+                sound = true;
+                System.out.println("sound is now" + sound);
+            }
+            if (itemstack.getItem() != Items.ItemElectricBunny) {
+                sound = false;
+                System.out.println("sound is now" + sound);
+            }
+        }
+
+
     }
 
 
