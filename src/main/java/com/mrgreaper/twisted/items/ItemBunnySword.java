@@ -22,9 +22,11 @@ import com.mrgreaper.twisted.ConfigInfo;
 import com.mrgreaper.twisted.ModInfo;
 import com.mrgreaper.twisted.TwistedMod;
 import com.mrgreaper.twisted.handlers.Materials;
-
-import net.minecraft.item.Item;
+import com.mrgreaper.twisted.handlers.SoundHandler;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
+import net.minecraft.world.World;
 
 public class ItemBunnySword extends ItemSword {
 
@@ -37,6 +39,16 @@ public class ItemBunnySword extends ItemSword {
             setTextureName(ModInfo.modId + ":bunny_Sword2");
         } else {
             setTextureName(ModInfo.modId + ":bunny_Sword");
+        }
+    }
+
+    @Override
+    public void onCreated(ItemStack itemStack, World world, EntityPlayer player) {
+        int playerX = (int) player.prevPosX;
+        int playerY = (int) player.prevPosY;
+        int playerZ = (int) player.prevPosZ;
+        if (!player.worldObj.isRemote) {
+            SoundHandler.onEntityPlay("bunnySwordInsert", world, player, 1, 1);
         }
     }
 

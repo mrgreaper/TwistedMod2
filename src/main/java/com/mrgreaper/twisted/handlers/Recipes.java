@@ -20,13 +20,9 @@ package com.mrgreaper.twisted.handlers;
 
 import com.mrgreaper.twisted.ConfigInfo;
 import com.mrgreaper.twisted.items.Items;
-
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.block.Block;
 
 
 public class Recipes {
@@ -45,6 +41,13 @@ public class Recipes {
                         'D', Blocks.dirt, //items used in the above list
                         'C', net.minecraft.init.Items.carrot
                 });
+
+        GameRegistry.addRecipe(new ItemStack(Items.ItemLivingBunny),//TEST RECIPE
+                new Object[]{" D ",
+                        "   ",
+                        "   ",
+
+                        'D', Blocks.dirt});
 
         GameRegistry.addRecipe(new ItemStack(Items.ItemBunnySword),//output item
                 new Object[]{" C ",//crafting grid

@@ -23,9 +23,11 @@ import com.mrgreaper.twisted.ModInfo;
 import com.mrgreaper.twisted.TwistedMod;
 
 import com.mrgreaper.twisted.handlers.DiceHandler;
+import com.mrgreaper.twisted.handlers.SoundHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 
 public class ItemLivingBunny extends Item{
@@ -46,21 +48,25 @@ public class ItemLivingBunny extends Item{
             int rand = DiceHandler.diceRoll(5, 1);
             switch (rand) {
                 case 1:
-                    //play sound
+                    SoundHandler.onEntityPlay("monster", world, player, 1, 1);
                     break;
                 case 2:
+                    SoundHandler.onEntityPlay("bunnyResistance", world, player, 1, 1);
                     break;
                 case 3:
+                    SoundHandler.onEntityPlay("bunnyRelease", world, player, 1, 1);
                     break;
                 case 4:
+                    SoundHandler.onEntityPlay("bunnyExp", world, player, 1, 1);
                     break;
                 case 5:
+                    SoundHandler.onEntityPlay("littleBunny", world, player, 1, 1);
                     break;
             }
 
 
         } else {
-            //send message to player
+            player.func_145747_a(new ChatComponentText("Don't let the vile evil creature go free!"));
         }
 
 

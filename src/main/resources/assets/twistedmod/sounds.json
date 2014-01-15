@@ -11,6 +11,7 @@
    "bunnynernernanerner": {"category": "master","sounds": [{"name": "bunnynernernanerner","stream": false}]},
    "bunnyResistance": {"category": "master","sounds": [{"name": "bunnyResistance","stream": false}]},
    "bunnyOrbLaunch": {"category": "master","sounds": [{"name": "bunnyOrbLaunch","stream": false}]},
+   "bunnySwordInsert": {"category": "master","sounds": [{"name": "bunnySwordInsert","stream": false}]},
    "exp_trail": {"category": "master","sounds": [{"name": "exp_trail","stream": false}]},
    "growl": {"category": "master","sounds": [{"name": "growl","stream": false}]},
    "laugh": {"category": "master","sounds": [{"name": "laugh","stream": false}]},

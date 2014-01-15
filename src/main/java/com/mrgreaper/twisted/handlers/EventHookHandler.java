@@ -29,7 +29,8 @@ import net.minecraftforge.event.ServerChatEvent;
 
 
 public class EventHookHandler {
-    private boolean sound = false;
+    private boolean hasPlayed = false;
+
 
     public static void init() {
 
@@ -67,6 +68,42 @@ public class EventHookHandler {
     }
 
     @SubscribeEvent
+    public void TwistedTickEvent(TickEvent.PlayerTickEvent event) {
+        ItemStack stack = event.player.getCurrentEquippedItem();
+        boolean shouldPlay = (stack != null && stack.getItem() == Items.ItemElectricBunny && ConfigInfo.ELECBUNNYCRYS);
+        //System.out.println( "item stack is "+stack+" shouldPlay = "+shouldPlay+" hasPlayed = "+hasPlayed);
+        if (shouldPlay && !hasPlayed && !event.player.worldObj.isRemote) {
+            int random = DiceHandler.diceRoll(5, 1);//get a number between 1 and 5
+            System.out.println("item stack is " + stack + " shouldPlay = " + shouldPlay + " hasPlayed = " + hasPlayed);
+            switch (random) { //use that number
+                case 1:
+                    SoundHandler.onEntityPlay("bunnyBegA", event.player.worldObj, event.player, 1, 1);
+                    break;
+                case 2:
+                    SoundHandler.onEntityPlay("bunnyBegB", event.player.worldObj, event.player, 1, 1);
+                    break;
+                case 3:
+                    SoundHandler.onEntityPlay("bunnyBegC", event.player.worldObj, event.player, 1, 1);
+                    break;
+                case 4:
+                    SoundHandler.onEntityPlay("bunnyBegD", event.player.worldObj, event.player, 1, 1);
+                    break;
+                case 5:
+                    SoundHandler.onEntityPlay("bunnyBegE", event.player.worldObj, event.player, 1, 1);
+                    break;
+            }
+        }
+        hasPlayed = shouldPlay;
+
+
+    }
+
+
+
+
+
+
+  /*
     public void TwistedTickEvent(TickEvent.PlayerTickEvent event) { //TODO fix this section!
         if (event.player.getCurrentEquippedItem() != null) {//ok so lets make sure the player has something in thier little gruby handsies
             ItemStack itemstack = event.player.getCurrentEquippedItem(); //lets make itemstack = it
@@ -106,7 +143,7 @@ public class EventHookHandler {
 
 
     }
-
+*/
 
 }
 
