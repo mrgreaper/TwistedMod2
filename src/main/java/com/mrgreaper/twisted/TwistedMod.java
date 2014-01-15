@@ -19,22 +19,10 @@
 package com.mrgreaper.twisted;
 
 import com.mrgreaper.twisted.Guis.GuiHandler;
-import com.mrgreaper.twisted.handlers.*;
-import cpw.mods.fml.common.network.NetworkRegistry;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Blocks;
-
-import com.mrgreaper.twisted.items.ItemDeadBunny;
-import com.mrgreaper.twisted.items.Items;
 import com.mrgreaper.twisted.blocks.BlockInfo;
+import com.mrgreaper.twisted.handlers.*;
+import com.mrgreaper.twisted.items.Items;
 import com.mrgreaper.twisted.proxies.CommonProxy;
-
-import net.minecraft.item.Item;
-import net.minecraft.item.Item.ToolMaterial;
-import net.minecraft.item.ItemStack;
-import net.minecraft.stats.Achievement;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.util.EnumHelper;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -43,7 +31,16 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.FMLEmbeddedChannel;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import cpw.mods.fml.relauncher.Side;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.MinecraftForge;
+
+import java.util.EnumMap;
 
 @Mod(modid = ModInfo.modId,name="MrGReapers Twisted Mod", version = ModInfo.modVersion)
 
@@ -80,7 +77,8 @@ public class TwistedMod{
 		BlockInfo.init();
 		FMLCommonHandler.instance().bus().register(new EventHookHandler());
 		MinecraftForge.EVENT_BUS.register(new EventHookHandler());
-		try {
+        EnumMap<Side, FMLEmbeddedChannel> channels = NetworkRegistry.INSTANCE.newChannel(ModInfo.channel, new TwistedChannelHandler());
+        try {
 			BotHandler.init();
 			System.out.println("Bot Handler is a loaded");
 		} catch (Exception e) {

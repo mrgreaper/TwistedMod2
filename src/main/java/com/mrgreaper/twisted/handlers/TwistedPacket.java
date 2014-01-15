@@ -16,55 +16,33 @@
  * freetts is used within its license as stated here : http://freetts.sourceforge.net/license.terms
  */
 
-package com.mrgreaper.twisted.items;
+package com.mrgreaper.twisted.handlers;
 
-import com.mrgreaper.twisted.ConfigInfo;
-import com.mrgreaper.twisted.ModInfo;
-import com.mrgreaper.twisted.TwistedMod;
+import io.netty.buffer.ByteBuf;
 
-import com.mrgreaper.twisted.handlers.DiceHandler;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
+/**
+ * Created by david on 14/01/14.
+ */
 
-public class ItemLivingBunny extends Item{
+// the example packet as per the tutorial at : http://www.minecraftforge.net/wiki/Tutorials/Packet_Handling
 
-		public ItemLivingBunny() {
-			this.setCreativeTab(TwistedMod.tabTwisted);
-			setMaxStackSize(1);
-			setUnlocalizedName("bunnyLiving");
-			if (ConfigInfo.ATEX){setTextureName(ModInfo.modId+":bunny_living2");}else{setTextureName(ModInfo.modId+":bunny_living");}
-	}
+public class TwistedPacket implements NetworkHandler {
+    int i;
 
-    @Override
-    public void onCreated(ItemStack itemStack, World world, EntityPlayer player) {
-        int playerX = (int) player.prevPosX;
-        int playerY = (int) player.prevPosY;
-        int playerZ = (int) player.prevPosZ;
-        if (!player.worldObj.isRemote) {
-            int rand = DiceHandler.diceRoll(5, 1);
-            switch (rand) {
-                case 1:
-                    //play sound
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    break;
-                case 4:
-                    break;
-                case 5:
-                    break;
-            }
+    public TwistedPacket() {
+    } //we need this for the packet decoding
 
-
-        } else {
-            //send message to player
-        }
-
-
+    public TwistedPacket(int i) {
+        this.i = 1;
     }
 
+    public void readBytes(ByteBuf bytes) {
+        i = bytes.readInt();
 
+        System.out.println("Recieved packet with the int i = " + i);
+    }
+
+    public void writeBytes(ByteBuf bytes) {
+        bytes.writeInt(i);
+    }
 }

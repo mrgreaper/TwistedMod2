@@ -18,9 +18,6 @@
 
 package com.mrgreaper.twisted.handlers;
 
-import java.util.Arrays;
-
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ChatComponentText;
 
@@ -37,7 +34,6 @@ public class BotChat implements Runnable {
         bot = bot2;
         Thread t2 = new Thread(new BotChat());
         t2.start();
-
     }
 
 
@@ -65,8 +61,6 @@ public class BotChat implements Runnable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
 
 }

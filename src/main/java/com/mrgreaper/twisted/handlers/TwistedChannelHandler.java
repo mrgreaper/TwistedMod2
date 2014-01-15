@@ -16,55 +16,31 @@
  * freetts is used within its license as stated here : http://freetts.sourceforge.net/license.terms
  */
 
-package com.mrgreaper.twisted.items;
+package com.mrgreaper.twisted.handlers;
 
-import com.mrgreaper.twisted.ConfigInfo;
-import com.mrgreaper.twisted.ModInfo;
-import com.mrgreaper.twisted.TwistedMod;
+import cpw.mods.fml.common.network.FMLIndexedMessageToMessageCodec;
+import io.netty.buffer.ByteBuf;
+import io.netty.channel.ChannelHandlerContext;
 
-import com.mrgreaper.twisted.handlers.DiceHandler;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
+/**
+ * Created by david on 14/01/14.
+ */
 
-public class ItemLivingBunny extends Item{
-
-		public ItemLivingBunny() {
-			this.setCreativeTab(TwistedMod.tabTwisted);
-			setMaxStackSize(1);
-			setUnlocalizedName("bunnyLiving");
-			if (ConfigInfo.ATEX){setTextureName(ModInfo.modId+":bunny_living2");}else{setTextureName(ModInfo.modId+":bunny_living");}
-	}
-
-    @Override
-    public void onCreated(ItemStack itemStack, World world, EntityPlayer player) {
-        int playerX = (int) player.prevPosX;
-        int playerY = (int) player.prevPosY;
-        int playerZ = (int) player.prevPosZ;
-        if (!player.worldObj.isRemote) {
-            int rand = DiceHandler.diceRoll(5, 1);
-            switch (rand) {
-                case 1:
-                    //play sound
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    break;
-                case 4:
-                    break;
-                case 5:
-                    break;
-            }
-
-
-        } else {
-            //send message to player
-        }
-
-
+//channel handler as per tutorial: http://www.minecraftforge.net/wiki/Tutorials/Packet_Handling
+public class TwistedChannelHandler extends FMLIndexedMessageToMessageCodec<NetworkHandler> {
+    public TwistedChannelHandler() {
+        addDiscriminator(0, TwistedPacket.class); // the packet understander
     }
 
 
+    @Override
+    public void encodeInto(ChannelHandlerContext ctx, NetworkHandler packet, ByteBuf data) throws Exception {
+        packet.writeBytes(data);
+    }
+
+    @Override
+    public void decodeInto(ChannelHandlerContext ctx, ByteBuf data, NetworkHandler packet) {
+        packet.readBytes(data);
+    }
 }
+

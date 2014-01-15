@@ -67,13 +67,13 @@ public class EventHookHandler {
     }
 
     @SubscribeEvent
-    public void TwistedTickEvent(TickEvent.PlayerTickEvent event) {
+    public void TwistedTickEvent(TickEvent.PlayerTickEvent event) { //TODO fix this section!
         if (event.player.getCurrentEquippedItem() != null) {//ok so lets make sure the player has something in thier little gruby handsies
             ItemStack itemstack = event.player.getCurrentEquippedItem(); //lets make itemstack = it
             System.out.println(itemstack);
-            if (itemstack.getItem() == Items.ItemElectricBunny && ConfigInfo.ELECBUNNYCRYS && !sound) {
-                int random = DiceHandler.diceRoll(5, 1);
-                switch (random) {
+            if (itemstack.getItem() == Items.ItemElectricBunny && ConfigInfo.ELECBUNNYCRYS && !sound) { //if it IS itemElectricBunny and elecbunnycrys are true and sound is false(it our toggler) then
+                int random = DiceHandler.diceRoll(5, 1);//get a number between 1 and 5
+                switch (random) { //use that number
                     case 1:
                         SoundHandler.onEntityPlay("bunnyBegA", event.player.worldObj, event.player, 1, 1);
                         System.out.println("sound is now" + sound);
@@ -95,11 +95,11 @@ public class EventHookHandler {
                         System.out.println("sound is now" + sound);
                         break;
                 }
-                sound = true;
+                sound = true; //set sound to true so we know its been played and we dont get it trying to repeat the sound
                 System.out.println("sound is now" + sound);
             }
-            if (itemstack.getItem() != Items.ItemElectricBunny) {
-                sound = false;
+            if (itemstack.getItem() != Items.ItemElectricBunny) {//if the item isnt an electric bunny lets
+                sound = false; //set this to false again so the system knows it can play it again when it is an electric bunny
                 System.out.println("sound is now" + sound);
             }
         }

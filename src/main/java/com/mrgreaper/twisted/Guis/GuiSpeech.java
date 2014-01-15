@@ -27,7 +27,7 @@ public class GuiSpeech extends GuiScreen{
     private GuiTextField sayWhatField;
 
 public void init(){
-    //sayWhatField = new GuiTextField(fontRenderer,20,75,170,20);
+    sayWhatField = new GuiTextField(field_146289_q, 20, 75, 170, 20);
     //sayWhatField.
     //YET MORE THAT CANT BE DONE UNTILL MAPPINGS ARE READY ARGHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
 }
