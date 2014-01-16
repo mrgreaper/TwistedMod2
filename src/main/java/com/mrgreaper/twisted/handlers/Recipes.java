@@ -34,43 +34,40 @@ public class Recipes {
     public static void registerRecipes() {
 
         GameRegistry.addRecipe(new ItemStack(Items.ItemDeadBunny),//output item
-                new Object[]{"C C",//crafting grid
-                        " D ",
-                        "C C",
+                "C C",//crafting grid
+                " D ",
+                "C C",
 
-                        'D', Blocks.dirt, //items used in the above list
-                        'C', net.minecraft.init.Items.carrot
-                });
+                'D', Blocks.dirt, //items used in the above list
+                'C', net.minecraft.init.Items.carrot);
 
         GameRegistry.addRecipe(new ItemStack(Items.ItemLivingBunny),//TEST RECIPE
-                new Object[]{" D ",
-                        "   ",
-                        "   ",
+                " D ",
+                "   ",
+                "   ",
 
-                        'D', Blocks.dirt});
+                'D', Blocks.dirt);
 
         GameRegistry.addRecipe(new ItemStack(Items.ItemBunnySword),//output item
-                new Object[]{" C ",//crafting grid
-                        " B ",
-                        " S ",
+                " C ",//crafting grid
+                " B ",
+                " S ",
 
-                        'B', Items.ItemLivingBunny, //take one living bunny
-                        'S', Items.ItemOrphanLegBoneHilt, //one orphan bone hilt
-                        'C', Blocks.cobblestone //ram the the bunny on with a bit of cobblestone
-                        //its wierd people say im evil..... wierd that
-                        //dont worry you will hear the click when the orphan hilt enters fig b of the bunny and clips into place
-                        //or a scream....proberly a scream....you heartless person you!
-                        //that poor cobblestone
-
-                });
+                'B', Items.ItemLivingBunny, //take one living bunny
+                'S', Items.ItemOrphanLegBoneHilt, //one orphan bone hilt
+                'C', Blocks.cobblestone //ram the the bunny on with a bit of cobblestone
+                //its wierd people say im evil..... wierd that
+                //dont worry you will hear the click when the orphan hilt enters fig b of the bunny and clips into place
+                //or a scream....proberly a scream....you heartless person you!
+                //that poor cobblestone
+        );
         GameRegistry.addRecipe(new ItemStack(Items.ItemDeathOrb),//output item
-                new Object[]{" F ",//crafting grid
-                        "FIF",
-                        " F ",
+                " F ",//crafting grid
+                "FIF",
+                " F ",
 
-                        'F', net.minecraft.init.Items.flint,
-                        'I', net.minecraft.init.Items.iron_ingot
-                });
+                'F', net.minecraft.init.Items.flint,
+                'I', net.minecraft.init.Items.iron_ingot);
 
 
         //shapeless mod recipies
@@ -104,24 +101,22 @@ public class Recipes {
         }
         if (ConfigInfo.SPONGECRAFT) {
             GameRegistry.addRecipe(new ItemStack(Blocks.sponge),//output item
-                    new Object[]{" W ",//crafting grid
-                            "WBW",
-                            " W ",
+                    " W ",//crafting grid
+                    "WBW",
+                    " W ",
 
-                            'W', Blocks.wool,
-                            'B', net.minecraft.init.Items.water_bucket
-                    });
+                    'W', Blocks.wool,
+                    'B', net.minecraft.init.Items.water_bucket);
         }
 
         if (ConfigInfo.MOSSYCRAFT) {
             GameRegistry.addRecipe(new ItemStack(Blocks.mossy_cobblestone),//output item
-                    new Object[]{" V ",//crafting grid
-                            "VCV",
-                            " V ",
+                    " V ",//crafting grid
+                    "VCV",
+                    " V ",
 
-                            'V', Blocks.vine,
-                            'C', Blocks.cobblestone
-                    });
+                    'V', Blocks.vine,
+                    'C', Blocks.cobblestone);
         }
     }
 

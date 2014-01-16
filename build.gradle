@@ -18,39 +18,55 @@ buildscript {
 apply plugin: 'forge'
 
 version = "1.0"
-group= "com.yourname.modid" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+group = "com.yourname.modid" /*
+ * Copyright (c) 2014. The Code is under The MIT License (MIT)
+ *
+ * Copyright (c) [2014] [David Eastwick]
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * side note, i request you do not copy whole classes from my mod etc thats just not cool :)
+ *
+ * Textures and binaries are licensed under Creative Commons 3 *: http://creativecommons.org/licenses/by/3.0/ Any alternate licenses are noted where appropriate *where applicable
+ *
+ * freetts is used within its license as stated here : http://freetts.sourceforge.net/license.terms
+ */ // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "modid"
 
 minecraft {
-    version = "1.7.2-10.12.0.998"
+    version = "1.7.2-10.12.0.999"
 }
 processResources
-{
-    // replace stuff in mcmod.info, nothing else
-    from(sourceSets.main.resources.srcDirs) {
-        include 'mcmod.info'
-                
-        // replace version and mcversion
-        expand 'version':project.version, 'mcversion':project.minecraft.version
-    }
-        
-    // copy everything else, thats not the mcmod.info
-    from(sourceSets.main.resources.srcDirs) {
-        exclude 'mcmod.info'
-    }
-}
+        {
+            // replace stuff in mcmod.info, nothing else
+            from(sourceSets.main.resources.srcDirs) {
+                include 'mcmod.info'
+
+                // replace version and mcversion
+                expand 'version': project.version, 'mcversion': project.minecraft.version
+            }
+
+            // copy everything else, thats not the mcmod.info
+            from(sourceSets.main.resources.srcDirs) {
+                exclude 'mcmod.info'
+            }
+        }
 jar {
-from zipTree("libs/chatter-bot-api.jar")
-from zipTree("libs/cmulex.jar")
-from zipTree("libs/en_us.jar")
-from zipTree("libs/freetts.jar")
-from zipTree("libs/freetts-jsapi10.jar")
-from zipTree("libs/mbrola.jar")
-from zipTree("libs/cmu_us_kal.jar")
+    from zipTree("libs/chatter-bot-api.jar")
+    from zipTree("libs/cmulex.jar")
+    from zipTree("libs/en_us.jar")
+    from zipTree("libs/freetts.jar")
+    from zipTree("libs/freetts-jsapi10.jar")
+    from zipTree("libs/mbrola.jar")
+    from zipTree("libs/cmu_us_kal.jar")
 }
 minecraft {
-srgExtra "PK: com.sun.speech.freetts com.mrgreaper.twisted.lib"
-srgExtra "PK: com.sun.speech.engine com.mrgreaper.twisted.lib"
-srgExtra "PK: com.google.code.chatterbotapi com.mrgreaper.twisted.lib"
-srgExtra "PK: de.dfki.lt.freetts.en.us com.mrgreaper.twisted.lib"
+    srgExtra "PK: com.sun.speech.freetts com.mrgreaper.twisted.lib"
+    srgExtra "PK: com.sun.speech.engine com.mrgreaper.twisted.lib"
+    srgExtra "PK: com.google.code.chatterbotapi com.mrgreaper.twisted.lib"
+    srgExtra "PK: de.dfki.lt.freetts.en.us com.mrgreaper.twisted.lib"
 }

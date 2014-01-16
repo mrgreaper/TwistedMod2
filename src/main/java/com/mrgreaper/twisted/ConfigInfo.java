@@ -41,6 +41,8 @@ public class ConfigInfo {
     public static final String GRASSCRAFT_KEY = "Allow craftable grass? ";
     public static boolean ELECBUNNYCRYS;
     public static final String ELECBUNNYCRYS_KEY = "Enable electric bunny crys ?";
+    public static boolean PUBLICTTSBOTS;
+    public static final String PUBLICTTSBOTS_KEY = "Do bots use speech when in public channels ? ";
 
 
     //not used yet (in exile untill the functions that use them are ready)

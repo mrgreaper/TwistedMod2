@@ -41,6 +41,7 @@ public class ConfigHandler {
         ConfigInfo.MOSSYCRAFT = config.get("Vanila Tweaks", ConfigInfo.MOSSYCRAFT_KEY, true).getBoolean(true);
         ConfigInfo.GRASSCRAFT = config.get("Vanila Tweaks", ConfigInfo.GRASSCRAFT_KEY, true).getBoolean(true);
         ConfigInfo.ELECBUNNYCRYS = config.get("Bunny Toggles", ConfigInfo.ELECBUNNYCRYS_KEY, true).getBoolean(true);
+        ConfigInfo.PUBLICTTSBOTS = config.get("Bot Toggles", ConfigInfo.PUBLICTTSBOTS_KEY, false).getBoolean(false);
 
         config.save();
 
