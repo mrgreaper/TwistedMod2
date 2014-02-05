@@ -16,25 +16,52 @@
  * freetts is used within its license as stated here : http://freetts.sourceforge.net/license.terms
  */
 
-package com.mrgreaper.twisted.proxies;
+package com.mrgreaper.twisted.botSection;
 
-import net.minecraft.server.MinecraftServer;
+import com.mrgreaper.twisted.handlers.speechThreaded;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ChatComponentText;
 
-public class CommonProxy {
+public class BotChat implements Runnable {
 
-    public void registerRenderers() {
-        // Nothing here as the server doesn't render graphics or entities!
+
+    public static EntityPlayerMP player;
+    public static String message;
+    public static String bot;
+
+    public static void incoming(EntityPlayerMP player2, String message2, String bot2) {
+        player = player2;
+        message = message2;
+        bot = bot2;
+        Thread t2 = new Thread(new BotChat());
+        t2.start();
     }
 
-    public void chatHandler(String msg) {
-        //should be "player.addChatMessage(msg);" but seems to have changed
-        MinecraftServer.getServer().addChatMessage(new ChatComponentText(msg));
-    }
 
-    public void initSounds() {
-        // TODO Auto-generated method stub
+    public void run() {
 
+        String[] messageMod = message.split(" ", 2);
+        System.out.println("adapted message is : " + messageMod[1]);
+        String answer = "";
+        try {
+            if (bot.equals("max")) {
+                answer = BotHandler.maxBot(messageMod[1]);
+                speechThreaded.speechSynth(0, 5, 4, 2, answer);
+            }
+            if (bot.equals("george")) {
+                answer = BotHandler.georgeBot(messageMod[1]);
+                speechThreaded.speechSynth(0, 11, 11, 10, answer);
+            }
+            if (bot.equals("fred")) {
+                answer = BotHandler.fredBot(messageMod[1]);
+                speechThreaded.speechSynth(1, 0, 60, 10, answer);
+            }
+            player.addChatMessage(new ChatComponentText("<Pm to " + bot + "> " + messageMod[1]));
+            player.addChatMessage(new ChatComponentText("<Pm from " + bot + "> " + answer));
+            //speechThreaded.speechSynth(0, 1, 4, 2, answer);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

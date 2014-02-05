@@ -66,7 +66,7 @@ public class ItemLivingBunny extends Item{
 
 
         } else {
-            player.func_145747_a(new ChatComponentText("Don't let the vile evil creature go free!"));
+            player.addChatMessage(new ChatComponentText("Don't let the vile evil creature go free!"));
         }
 
 

@@ -18,10 +18,7 @@
 
 package com.mrgreaper.twisted.handlers;
 
-import com.mrgreaper.twisted.TwistedMod;
 import com.mrgreaper.twisted.items.Items;
-
-import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
 import net.minecraftforge.common.AchievementPage;

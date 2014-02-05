@@ -76,7 +76,7 @@ public class EventHookHandler {
         }
         if (chatMessage.contains("need") && chatMessage.contains("name")) {//for future use
             System.out.println("wow it worked");
-            MinecraftServer.getServer().getConfigurationManager().func_148539_a(new ChatComponentText("This is a test"));
+            MinecraftServer.getServer().getConfigurationManager().sendChatMsg(new ChatComponentText("This is a test"));
         }
         if (!fredChat && !georgeChat && !maxChat && chatMessage.contains("fred") && chatMessage.contains("join") && chatMessage.contains("chat") && chatMessage.contains("please")) {
             fredChat = true;

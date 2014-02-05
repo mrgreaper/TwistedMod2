@@ -35,10 +35,10 @@ group = "com.yourname.modid" /*
  *
  * freetts is used within its license as stated here : http://freetts.sourceforge.net/license.terms
  */ // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "modid"
+archivesBaseName = "twistedmod"
 
 minecraft {
-    version = "1.7.2-10.12.0.999"
+    version = "1.7.2-10.12.0.1024"
 }
 processResources
         {

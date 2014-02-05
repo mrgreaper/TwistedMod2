@@ -33,7 +33,6 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.FMLEmbeddedChannel;
 import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -42,84 +41,81 @@ import net.minecraftforge.common.MinecraftForge;
 
 import java.util.EnumMap;
 
-@Mod(modid = ModInfo.modId,name="MrGReapers Twisted Mod", version = ModInfo.modVersion)
+@Mod(modid = ModInfo.modId, name = "MrGReapers Twisted Mod", version = ModInfo.modVersion)
 
 
+public class TwistedMod {
 
-public class TwistedMod{
-	
-	
-	
+
     @Instance(ModInfo.modId)
     public static TwistedMod instance;
-    
-    @SidedProxy(clientSide="com.mrgreaper.twisted.proxies.ClientProxy", serverSide="com.mrgreaper.twisted.proxies.CommonProxy")
+
+    @SidedProxy(clientSide = "com.mrgreaper.twisted.proxies.ClientProxy", serverSide = "com.mrgreaper.twisted.proxies.CommonProxy")
     public static CommonProxy proxy;
-	
-	public static CreativeTabs tabTwisted = new CreativeTabs("tabTwisted"){
-		@Override
-		   public ItemStack func_151244_d() 
-        {
-                return new ItemStack(Items.ItemDeadBunny);
+
+    public static CreativeTabs tabTwisted = new CreativeTabs("tabTwisted") {
+        @Override
+        public ItemStack getIconItemStack() {
+            return new ItemStack(Items.ItemDeadBunny);
         }
 
-		@Override
-		public Item getTabIconItem() {
-			// this is needed but doesnt actually do anything! the item image above works fine
-			return null;
-		}
+        @Override
+        public Item getTabIconItem() {
+            // this is needed but doesnt actually do anything! the item image above works fine
+            return null;
+        }
 
-	};
-	@EventHandler
-	public void preInit(FMLPreInitializationEvent event){
-		ConfigHandler.init(event.getSuggestedConfigurationFile());
-		Items.init();
-		BlockInfo.init();
-		FMLCommonHandler.instance().bus().register(new EventHookHandler());
-		MinecraftForge.EVENT_BUS.register(new EventHookHandler());
+    };
+
+    @EventHandler
+    public void preInit(FMLPreInitializationEvent event) {
+        ConfigHandler.init(event.getSuggestedConfigurationFile());
+        Items.init();
+        BlockInfo.init();
+        FMLCommonHandler.instance().bus().register(new EventHookHandler());
+        MinecraftForge.EVENT_BUS.register(new EventHookHandler());
         EnumMap<Side, FMLEmbeddedChannel> channels = NetworkRegistry.INSTANCE.newChannel(ModInfo.channel, new TwistedChannelHandler());
         try {
-			BotHandler.init();
-			System.out.println("Bot Handler is a loaded");
-		} catch (Exception e) {
-			System.out.println("Bot Handler failed! arghhhhhhhhhhhh its the end of the world as we know it!");
-			e.printStackTrace();
-			
-		}
+            BotHandler.init();
+            System.out.println("Bot Handler is a loaded");
+        } catch (Exception e) {
+            System.out.println("Bot Handler failed! arghhhhhhhhhhhh its the end of the world as we know it!");
+            e.printStackTrace();
+
+        }
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
-		//left it in incase i suddenly thought...why isnt that in..its cos its wrong ok future me? its not needed it changed! MinecraftForge.EVENT_BUS.register(new EventHookHandler());
-		//proxy.initSounds();  sounds at the moment are not usable in forge how they used to be 
-	}
-    
+        //left it in incase i suddenly thought...why isnt that in..its cos its wrong ok future me? its not needed it changed! MinecraftForge.EVENT_BUS.register(new EventHookHandler());
+        //proxy.initSounds();  sounds at the moment are not usable in forge how they used to be
+    }
+
     @EventHandler
-    public void init(FMLInitializationEvent event)
-    {
-		
+    public void init(FMLInitializationEvent event) {
+
         //System.out.println("DIRT BLOCK >> "+Blocks.dirt.func_149739_a()); //left for reference
         try { //lets test the bot
-			//System.out.println(BotHandler.maxBot("how are you robot?"));
-			//System.out.println(BotHandler.fredBot("where are you?"));
-			//System.out.println(BotHandler.georgeBot("do you like minecraft?"));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-       //  speechThreaded.speechSynth(0, 2, 4, 1, "there be bunnys ma boy!"); //lets test the speech synth
+            //System.out.println(BotHandler.maxBot("how are you robot?"));
+            //System.out.println(BotHandler.fredBot("where are you?"));
+            //System.out.println(BotHandler.georgeBot("do you like minecraft?"));
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        //  speechThreaded.speechSynth(0, 2, 4, 1, "there be bunnys ma boy!"); //lets test the speech synth
     }
-    
+
     @EventHandler
-    public void load(FMLInitializationEvent event){
-    	proxy.registerRenderers();
-    	Items.addNames();
-    	Recipes.registerRecipes();
-    	LanguageRegistry.instance().addStringLocalization("itemGroup.tabTwisted", "en_US", "Mr G Reapers Twisted Tab");
-    	AchievmentHandler.achieveInit();
+    public void load(FMLInitializationEvent event) {
+        proxy.registerRenderers();
+        Items.addNames();
+        Recipes.registerRecipes();
+        //LanguageRegistry.instance().addStringLocalization("itemGroup.tabTwisted", "en_US", "Mr G Reapers Twisted Tab");
+        AchievmentHandler.achieveInit();
     }
-    
+
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-            //stuff
+        //stuff
     }
-    
-    
+
+
 }

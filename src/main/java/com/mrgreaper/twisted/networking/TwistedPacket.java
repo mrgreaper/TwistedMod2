@@ -16,26 +16,34 @@
  * freetts is used within its license as stated here : http://freetts.sourceforge.net/license.terms
  */
 
-package com.mrgreaper.twisted.blocks;
+package com.mrgreaper.twisted.networking;
 
-import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraft.block.Block;
+import com.mrgreaper.twisted.handlers.NetworkHandler;
+import io.netty.buffer.ByteBuf;
 
-public class BlockInfo {
+/**
+ * Created by david on 14/01/14.
+ */
 
+// the example packet as per the tutorial at : http://www.minecraftforge.net/wiki/Tutorials/Packet_Handling
 
-    public static Block BlockGeorgeSkull;
-    public static Block BlockProgramableEnslaved;
+public class TwistedPacket implements NetworkHandler {
+    int i;
 
+    public TwistedPacket() {
+    } //we need this for the packet decoding
 
-    public static void init() {
-        BlockGeorgeSkull = new BlockGeorgeSkull();
-        GameRegistry.registerBlock(BlockGeorgeSkull, "georgeS");
-        BlockProgramableEnslaved = new BlockProgramableEnslaved();
-        GameRegistry.registerBlock(BlockProgramableEnslaved, "programableEnslaved");
-
-
+    public TwistedPacket(int i) {
+        this.i = 1;
     }
 
+    public void readBytes(ByteBuf bytes) {
+        i = bytes.readInt();
 
+        System.out.println("Recieved packet with the int i = " + i);
+    }
+
+    public void writeBytes(ByteBuf bytes) {
+        bytes.writeInt(i);
+    }
 }

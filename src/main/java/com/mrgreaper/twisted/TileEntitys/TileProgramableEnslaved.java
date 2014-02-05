@@ -26,15 +26,15 @@ public class TileProgramableEnslaved extends TileEntity {
 
 
     @Override
-    public void func_145841_b(NBTTagCompound tagCompound) {
-        super.func_145841_b(tagCompound); //writetonbt now readtonbt
+    public void writeToNBT(NBTTagCompound tagCompound) {
+        super.writeToNBT(tagCompound); //writetonbt now readtonbt
         tagCompound.setString("speech", pESpeech); //set the nbt tag "speech" to hold the data from pESpeech
     }
 
     @Override
-    public void func_145839_a(NBTTagCompound tagCompound) // read from nbt
+    public void readFromNBT(NBTTagCompound tagCompound) // read from nbt
     {
-        super.func_145839_a(tagCompound);
+        super.readFromNBT(tagCompound);
         this.pESpeech = tagCompound.getString("speech");// take the value of "speech" out of the nbt and use it as the string
     }
 

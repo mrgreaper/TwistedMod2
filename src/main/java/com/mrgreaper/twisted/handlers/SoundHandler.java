@@ -18,10 +18,8 @@
 
 package com.mrgreaper.twisted.handlers;
 
-import net.minecraft.client.audio.SoundManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
-import net.minecraftforge.client.event.sound.SoundLoadEvent;
 
 public class SoundHandler {
 

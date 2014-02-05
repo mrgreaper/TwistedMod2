@@ -16,8 +16,10 @@
  * freetts is used within its license as stated here : http://freetts.sourceforge.net/license.terms
  */
 
-package com.mrgreaper.twisted.handlers;
+package com.mrgreaper.twisted.botSection;
 
+import com.mrgreaper.twisted.ConfigInfo;
+import com.mrgreaper.twisted.handlers.speechThreaded;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;
@@ -68,7 +70,9 @@ public class botPublicChat implements Runnable {
             }
         }
         MinecraftServer.getServer().getConfigurationManager().sendChatMsg(new ChatComponentText("<" + bot + "> " + answer));
-        //TODO add speach synth in here for when chat is true
+        if (ConfigInfo.PUBLICTTSBOTS) {
+            speechThreaded.speechSynth(0, 0, 45, 15, answer);
+        }
         Thread.currentThread().interrupt();
         return;
     }

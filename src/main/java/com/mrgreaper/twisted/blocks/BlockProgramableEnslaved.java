@@ -30,10 +30,10 @@ import net.minecraft.world.World;
 public class BlockProgramableEnslaved extends Block {
 
     protected BlockProgramableEnslaved() {
-        super(Material.field_151576_e);
-        this.func_149647_a(TwistedMod.tabTwisted);
-        this.func_149663_c("ProgramableEnslaved");
-        this.func_149658_d(ModInfo.modId + ":slavedbunny_front");
+        super(Material.iron);
+        this.setCreativeTab(TwistedMod.tabTwisted);
+        this.setBlockName("ProgramableEnslaved");
+        this.setBlockTextureName(ModInfo.modId + ":slavedbunny_front");
     }
 
     //@Override

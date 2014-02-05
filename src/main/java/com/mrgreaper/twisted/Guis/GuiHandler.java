@@ -30,13 +30,13 @@ import net.minecraft.world.World;
 public class GuiHandler implements IGuiHandler {
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-        switch (ID){
+        switch (ID) {
             case 0:
-                TileEntity tileEntity = world.func_147438_o(x,y,z);
-                if (tileEntity instanceof TileProgramableEnslaved){
+                TileEntity tileEntity = world.getTileEntity(x, y, z);
+                if (tileEntity instanceof TileProgramableEnslaved) {
                     return null; //later return new ContainerTiny(player.inventory, (TileEntityTiny) tileEntity); (from tutorial)
-        }else{
-                    System.out.println ("i could not find the tile entity " + tileEntity);
+                } else {
+                    System.out.println("i could not find the tile entity " + tileEntity);
                 }
                 break;
 
@@ -47,12 +47,12 @@ public class GuiHandler implements IGuiHandler {
     @Override
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 
-        switch (ID){
+        switch (ID) {
             case 0:
-                TileEntity tileEntity = world.func_147438_o(x,y,z);
-                if (tileEntity instanceof TileProgramableEnslaved){
+                TileEntity tileEntity = world.getTileEntity(x, y, z);
+                if (tileEntity instanceof TileProgramableEnslaved) {
                     return null; //later return new GuiTiny(player.inventory, (TileEntityTiny) tileEntity);
-                }else {
+                } else {
                     System.out.println("i could not find the tile entity " + tileEntity);
                 }
                 break;

@@ -55,8 +55,8 @@ public class BotChat implements Runnable {
                 answer = BotHandler.fredBot(messageMod[1]);
                 speechThreaded.speechSynth(1, 0, 60, 10, answer);
             }
-            player.func_145747_a(new ChatComponentText("<Pm to " + bot + "> " + messageMod[1]));
-            player.func_145747_a(new ChatComponentText("<Pm from " + bot + "> " + answer));
+            player.addChatMessage(new ChatComponentText("<Pm to " + bot + "> " + messageMod[1]));
+            player.addChatMessage(new ChatComponentText("<Pm from " + bot + "> " + answer));
             //speechThreaded.speechSynth(0, 1, 4, 2, answer);
         } catch (Exception e) {
             e.printStackTrace();

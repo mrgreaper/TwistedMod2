@@ -38,9 +38,9 @@ public class ClientProxy extends CommonProxy {
     public void chatHandler(String msg) {
 
     }
-	
+
 	 /*public void chatHandler(String m)
-	  {
+      {
 	    if ((Minecraft.getMinecraft().theWorld != null) && (Minecraft.getMinecraft().theWorld.isRemote) && (Minecraft.getMinecraft().thePlayer != null) && (m != null)) {
 	      Minecraft.func_147105_a(m);;//                  func_71035_c(p + m);
 	    }

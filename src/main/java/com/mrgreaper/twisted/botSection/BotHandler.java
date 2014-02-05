@@ -16,26 +16,40 @@
  * freetts is used within its license as stated here : http://freetts.sourceforge.net/license.terms
  */
 
-package com.mrgreaper.twisted.blocks;
+package com.mrgreaper.twisted.botSection;
 
-import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraft.block.Block;
+import com.google.code.chatterbotapi.ChatterBot;
+import com.google.code.chatterbotapi.ChatterBotFactory;
+import com.google.code.chatterbotapi.ChatterBotSession;
+import com.google.code.chatterbotapi.ChatterBotType;
 
-public class BlockInfo {
+public class BotHandler {
 
+    private static ChatterBotSession maxSession;
+    private static ChatterBotSession fredSession;
+    private static ChatterBotSession georgeSession;
 
-    public static Block BlockGeorgeSkull;
-    public static Block BlockProgramableEnslaved;
-
-
-    public static void init() {
-        BlockGeorgeSkull = new BlockGeorgeSkull();
-        GameRegistry.registerBlock(BlockGeorgeSkull, "georgeS");
-        BlockProgramableEnslaved = new BlockProgramableEnslaved();
-        GameRegistry.registerBlock(BlockProgramableEnslaved, "programableEnslaved");
-
+    public static void init() throws Exception {
+        ChatterBotFactory factory = new ChatterBotFactory();
+        ChatterBot max = factory.create(ChatterBotType.CLEVERBOT);
+        maxSession = max.createSession();
+        ChatterBot fred = factory.create(ChatterBotType.JABBERWACKY);
+        fredSession = fred.createSession();
+        ChatterBot george = factory.create(ChatterBotType.PANDORABOTS, "b0dafd24ee35a477");
+        georgeSession = george.createSession();
 
     }
 
+    public static String maxBot(String s) throws Exception {
+        return maxSession.think(s);
+    }
 
+    public static String fredBot(String s) throws Exception {
+        return fredSession.think(s);
+    }
+
+    public static String georgeBot(String s) throws Exception {
+        return georgeSession.think(s);
+    }
 }
+
