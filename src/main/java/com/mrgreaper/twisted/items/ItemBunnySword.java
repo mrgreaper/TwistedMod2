@@ -21,8 +21,10 @@ package com.mrgreaper.twisted.items;
 import com.mrgreaper.twisted.ConfigInfo;
 import com.mrgreaper.twisted.ModInfo;
 import com.mrgreaper.twisted.TwistedMod;
+import com.mrgreaper.twisted.handlers.DiceHandler;
 import com.mrgreaper.twisted.handlers.Materials;
 import com.mrgreaper.twisted.handlers.SoundHandler;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
@@ -50,6 +52,24 @@ public class ItemBunnySword extends ItemSword {
         if (!player.worldObj.isRemote) {
             SoundHandler.onEntityPlay("bunnySwordInsert", world, player, 1, 1);
         }
+    }
+
+    @Override
+    public boolean hitEntity(ItemStack par1ItemStack, EntityLivingBase par2EntityLivingBase, EntityLivingBase par3EntityLivingBase) {
+        par1ItemStack.damageItem(1, par3EntityLivingBase);
+        if (!par2EntityLivingBase.worldObj.isRemote) {
+            SoundHandler.onEntityPlay("bunnyOww", par2EntityLivingBase.worldObj, par2EntityLivingBase, 1, DiceHandler.diceRoll(10, 1));
+        }
+        return true;
+    }
+
+    @Override
+    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
+        par3EntityPlayer.setItemInUse(par1ItemStack, this.getMaxItemUseDuration(par1ItemStack));
+        if (!par3EntityPlayer.worldObj.isRemote) {
+            SoundHandler.onEntityPlay("growl", par2World, par3EntityPlayer, 1, 1);
+        }
+        return par1ItemStack;
     }
 
 }
