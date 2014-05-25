@@ -60,6 +60,8 @@ public class BotChat implements Runnable {
             //speechThreaded.speechSynth(0, 1, 4, 2, answer);
         } catch (Exception e) {
             e.printStackTrace();
+            player.addChatMessage(new ChatComponentText("<Pm from chat handler> "+ bot+" seems to be inaccessable at the moment, perhaps he is sleeping?"));
+            player.addChatMessage(new ChatComponentText("<Pm from chat handler> I threw the error into the console log for you though"));
         }
     }
 
